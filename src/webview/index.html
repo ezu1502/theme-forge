@@ -17,40 +17,60 @@
                 <h2>Settings</h2>
 
                 <div class="color-categories">
-                    <div class="category">
-                        <div class="color-item">
-                            <label for="background">Background</label>
-                            <input type="color" id="background" value="#121314">
-                        </div>
-                        <div class="color-item">
-                            <label for="foreground">Foreground</label>
-                            <input type="color" id="foreground" value="#EEEEEE">
-                        </div>
+                    <div class="color-item">
+                        <label for="background">Background</label>
+                        <input type="color" id="background" value="#121314">
                     </div>
-                    
-                    <div class="category">
-                        <div class="color-item">
-                            <label for="keyword">Keyword</label>
-                            <input type="color" id="keyword" value="#FF0000">
-                        </div>
 
-                        <div class="color-item">
-                            <label for="function">Function</label>
-                            <input type="color" id="function" value="#f7a0ff">
-                        </div>
-
-                        <div class="color-item">
-                            <label for="string">String</label>
-                            <input type="color" id="string" value="#90cdff">
-                        </div>
-
-                        <div class="color-item">
-                            <label for="comment">Comment</label>
-                            <input type="color" id="comment" value="#7d9c6f">
-                        </div>
-                        
+                    <div class="color-item">
+                        <label for="foreground">Foreground</label>
+                        <input type="color" id="foreground" value="#EEEEEE">
                     </div>
-                    
+
+                    <div class="color-item">
+                        <label for="plain-code">Plain Code</label>
+                        <input type="color" id="plain-code" value="#B5CEA8">
+                    </div>
+
+                    <div class="color-item">
+                        <label for="keyword">Keyword</label>
+                        <input type="color" id="keyword" value="#ff7b72">
+                    </div>
+
+                    <div class="color-item">
+                        <label for="function">Function</label>
+                        <input type="color" id="function" value="#D2A8FF">
+                    </div>
+
+                    <div class="color-item">
+                        <label for="string">String</label>
+                        <input type="color" id="string" value="#A5D6FF">
+                    </div>
+
+                    <div class="color-item">
+                        <label for="types">Primitive Type</label>
+                        <input type="color" id="primitive-type" value="#FF7B72">
+                    </div>
+
+                    <div class="color-item">
+                        <label for="types">Library Type</label>
+                        <input type="color" id="library-type" value="#4EC9B0">
+                    </div>
+
+                    <div class="color-item">
+                        <label for="modifier">Modifier</label>
+                        <input type="color" id="modifier" value="#569CD6">
+                    </div>
+
+                    <div class="color-item">
+                        <label for="constant">Constant</label>
+                        <input type="color" id="constant" value="#79C0FF">
+                    </div>
+
+                    <div class="color-item">
+                        <label for="comment">Comment</label>
+                        <input type="color" id="comment" value="#8B949E">
+                    </div>
                 </div>
             </section>
             
@@ -60,12 +80,23 @@
                     
                     <div class="preview-body">
                         <div class="code-line">
-                            <span class="keyword">const</span>
-                            <span class="code">name =</span>
+                            <span class="primitive-type">int</span>
+                            <span class="code">number =</span>
+                            <span class="code">15</span><span class="code">;</span>
+                        </div>
+
+                        <div class="code-line">
+                            <span class="modifier">const</span>
+                            <span class="library-type">std</span><span class="code">::</span><span class="library-type">string</span>
+                            <span class="constant">NAME</span>
+                            <span class="code">=</span>
                             <span class="string">"Theme Forge"</span><span class="code">;</span>
                         </div>
                         <div class="code-line">
-                            <span class="keyword">if</span><span class="code"> (name == </span>
+                            <span class="keyword">if</span>
+                            <span class="code">(</span><span class="constant">name</span>
+                            <span class="code">==</span>
+                            
                             <span class="string">"VS Code"</span><span class="code">){</span>
                         </div>
 
@@ -77,8 +108,6 @@
                             <span class="code">}</span>
                         </div>
 
-                        <br>
-
                         <div class="code-line">
                             <span class="comment">//this is a comment.</span>
                         </div>
@@ -89,8 +118,11 @@
                 <section class="options">
                     <h2>Options</h2>
                     <div id="options-content">
-                        <button class="forge-button">Apply</button>
+                        <button class="forge-button" id="apply-button">Apply</button>
+                        <button class="forge-button" id="clear-button">Clear</button>
                     </div>
+
+                    
                 </section>
             </div>
         </main> 
