@@ -6,6 +6,7 @@
         <title>Theme Forge</title>
 
         <link rel="stylesheet" href="style.css">
+        <script src="logic.js"></script>
     </head>
 
     <body>
@@ -16,14 +17,40 @@
                 <h2>Settings</h2>
 
                 <div class="color-categories">
-                    <div class="color-item">
-                        <label for="background">Background</label>
-                        <input type="color" id="background">
+                    <div class="category">
+                        <div class="color-item">
+                            <label for="background">Background</label>
+                            <input type="color" id="background" value="#121314">
+                        </div>
+                        <div class="color-item">
+                            <label for="foreground">Foreground</label>
+                            <input type="color" id="foreground" value="#EEEEEE">
+                        </div>
                     </div>
-                    <div class="color-item">
-                        <label for="foreground">Foreground</label>
-                        <input type="color" id="foreground">
+                    
+                    <div class="category">
+                        <div class="color-item">
+                            <label for="keyword">Keyword</label>
+                            <input type="color" id="keyword" value="#FF0000">
+                        </div>
+
+                        <div class="color-item">
+                            <label for="function">Function</label>
+                            <input type="color" id="function" value="#f7a0ff">
+                        </div>
+
+                        <div class="color-item">
+                            <label for="string">String</label>
+                            <input type="color" id="string" value="#90cdff">
+                        </div>
+
+                        <div class="color-item">
+                            <label for="comment">Comment</label>
+                            <input type="color" id="comment" value="#7d9c6f">
+                        </div>
+                        
                     </div>
+                    
                 </div>
             </section>
             
@@ -32,31 +59,38 @@
                     <h2>Preview</h2>
                     
                     <div class="preview-body">
-                        <code>
-                            <div class="code-line">
-                                <span class="keyword">const</span>
-                                <span>name =</span>
-                                <span class="string">"Theme Forge"</span><span>;</span>
-                            </div>
-                            <div class="code-line">
-                                <span class="keyword">if</span><span> (name == </span>
-                                <span class="string">"VS Code"){</span>
-                            </div>
+                        <div class="code-line">
+                            <span class="keyword">const</span>
+                            <span class="code">name =</span>
+                            <span class="string">"Theme Forge"</span><span class="code">;</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="keyword">if</span><span class="code"> (name == </span>
+                            <span class="string">"VS Code"</span><span class="code">){</span>
+                        </div>
 
-                            <div class="code-line indent-1">
-                                <span class="function">printf</span><span>(</span><span class="string">"Hello world"</span><span>);</span><br>
-                            </div>
+                        <div class="code-line indent-1">
+                            <span class="function">printf</span><span class="code">(</span><span class="string">"Hello world"</span><span class="code">);</span><br>
+                        </div>
 
-                            <div class="code-line">
-                                <span>}</span>
-                            </div>
-                        </code>
+                        <div class="code-line">
+                            <span class="code">}</span>
+                        </div>
+
+                        <br>
+
+                        <div class="code-line">
+                            <span class="comment">//this is a comment.</span>
+                        </div>
                     </div>
 
                 </section>
 
                 <section class="options">
                     <h2>Options</h2>
+                    <div id="options-content">
+                        <button class="forge-button">Apply</button>
+                    </div>
                 </section>
             </div>
         </main> 

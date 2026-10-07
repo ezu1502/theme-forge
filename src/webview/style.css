@@ -1,3 +1,16 @@
+:root {
+    --background: #121314;
+    --foreground: #EEEEEE;
+
+
+    --code: #EEEEEE;
+    --keyword: #FF0000;
+    --function: #f7a0ff;
+    --string: #90cdff;
+    --comment: #7d9c6f;
+}
+
+
 body {
     background-color: #121314;
 }
@@ -67,6 +80,8 @@ input[type="color"]{
     height: 30px;
 
     border-radius: 15px;
+
+    flex-shrink: 0;
 }
 
 input[type="color"]::-webkit-color-swatch-wrapper {
@@ -74,17 +89,24 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 }
 
 input[type="color"]::-webkit-color-swatch {
-    border: none;
+    border: 1px solid #6b6b6b;
     border-radius: 15px;
 }
 
 .color-categories {
     display: flex;
-    flex-direction: column;
 
-    gap: 10px;
+    align-items: center;
+    flex-direction: row;
+
+    gap: 30px;
 }
 
+.color-categories .category{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 .color-item {
     display: flex;
 
@@ -96,10 +118,24 @@ input[type="color"]::-webkit-color-swatch {
     width: 130px;
 }
 
-code {
-    color: #BFBFBF;
+/* * PREVIEW */
+
+.preview {
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+.preview h1, .preview h2, .preview h3, .preview h4 {
+    color: var(--foreground);
+}
+.preview-body {
 
     font-size: 14px;
+
+    font-family: "Consolas";
+
+    margin: 0;
+    padding: 0;
 }
 
 .code-line {
@@ -111,5 +147,82 @@ code {
 }
 
 span.keyword {
+    color: var(--keyword);
+} 
+
+span.code {
+    color: var(--code);
+}
+
+span.function {
+    color: var(--function);
+}
+
+span.string {
+    color: var(--string);
+}
+
+span.comment {
+    color: var(--comment);
+}
+
+/* * END */
+
+
+#options-content {
+    display: flex;
+
+    width: 100%;
+    height: calc(100% - 100px);
+    justify-content: center;
+    align-items: center;
+}
+
+.forge-button {
+    padding: 15px 25px;
+    font-size: 18px;
+
+    border-radius: 5px;
+
+
+    color: #bebebe;
+    border: none;
+
+    background: linear-gradient(135deg, #361616, #ad0808, #ca4e1d);
+
+    box-shadow:
+        0 0 10px #ff480080;
+        0 0 10px #FFFF0000,
+        0 0 20px #ff480000;
     
+    transition:
+        transform 0.2s ease,
+        box-shadow 1s ease 0.1s;
+}
+
+.forge-button:hover {
+    transform: scale(1.08);
+    box-shadow:
+        0 0 10px #c0a427,
+        0 0 20px #ff4800;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.5s ease 0.1s;
+}
+
+.forge-button:active {
+
+    box-shadow:
+        0 0 20px #ff4800,
+        0 0 10px #c0a427,
+
+
+        0 0 15px #eeeeee8a,
+        0 0 5px #eeeeeea6;
+    transform: scale(0.92);
+
+    transition:
+        transform 0.08s ease,
+        box-shadow 0.2s ease;
 }

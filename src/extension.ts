@@ -17,6 +17,12 @@ async function openForge(context: vscode.ExtensionContext){
 		'style.css'
 	);
 
+	const jsPath = vscode.Uri.joinPath(
+		context.extensionUri,
+		'src',
+		'webview',
+		'logic.js'
+	);
 	
 
 	const panel = vscode.window.createWebviewPanel(
@@ -33,8 +39,9 @@ async function openForge(context: vscode.ExtensionContext){
 
 	
 	const cssUri = panel.webview.asWebviewUri(cssPath);
+	const jsUri = panel.webview.asWebviewUri(jsPath);
 
-	panel.webview.html = htmlContent.replace('style.css', cssUri.toString());
+	panel.webview.html = htmlContent.replace('style.css', cssUri.toString()).replace('logic.js', jsUri.toString());
 }
 
 export function activate(context: vscode.ExtensionContext) {
