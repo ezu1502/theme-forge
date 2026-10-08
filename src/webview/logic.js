@@ -1,19 +1,36 @@
 // region helpers
 console.log("logic.js loaded!");
-const default_colors = {
-    background: "#121314",
-    foreground: "#B5CEA8",
-    "plain-code": "#C9D1D9",
-    keyword: "#FF7B72",
-    function: "#D2A8FF",
-    string: "#A5D6FF",
-    "primitive-type": "#FF7B72",
-    "library-type": "#4EC9B0",
-    modifier: "#569CD6",
-    constant: "#79C0FF",
-    parameter: "#FFA657",
-    comment: "#8B949E"
+
+const themes = {
+    default: {
+        background: "#121314",
+        foreground: "#B5CEA8",
+        "plain-code": "#C9D1D9",
+        keyword: "#FF7B72",
+        function: "#D2A8FF",
+        string: "#A5D6FF",
+        "primitive-type": "#FF7B72",
+        "library-type": "#4EC9B0",
+        modifier: "#569CD6",
+        constant: "#79C0FF",
+        parameter: "#FFA657",
+        comment: "#8B949E"
+    },
+    
+    dark: {
+
+    },
+
+    light: {
+
+    },
+
+    habanero: {
+
+    }
 };
+
+
 
 function select(selector_string){
     return document.querySelector(selector_string);
@@ -34,6 +51,7 @@ document.addEventListener("DOMContentLoaded", make_logic);
 
 function make_logic(){
     listen_to_pickers();
+    listen_to_hex_inputs();
     listen_to_buttons();
     listen_to_messages();
     listen_to_nav();
@@ -56,6 +74,12 @@ function listen_to_buttons(){
         });
     });
 
+    select("#github-button").addEventListener("click", () => {
+        vscode.postMessage({
+            type: "open-github"
+        });
+    });
+
 }
 
 function listen_to_messages(){
@@ -74,7 +98,10 @@ function update_pickers(colors){
 
     pickers.forEach(picker => {
         const color = colors[picker.id];
+        const hex_input = select(`#${picker.id}-hex`);
+
         picker.value = color;
+        hex_input.value = color;
 
         document.documentElement.style.setProperty(
             `--${picker.id}`,
@@ -117,39 +144,71 @@ function listen_to_nav(){
 
     const help_button = select("#help-button");
     help_button.addEventListener("click", () => {
-        // TODO CONTINUAR AQUI! Terminar o help-page
+        select("#editor-page").classList.toggle("hidden");
+        select("#help-page").classList.toggle("hidden");
     });
 
+
+    const themes_dropdown = select("#themes-dropdown");
+
+    const themes_options = themes_dropdown.querySelectorAll("button");
+
+    themes_options.forEach(theme => {
+        theme.addEventListener("click", () => {
+            update_pickers(themes[theme.id]);
+        });
+    });
+
+
+
+}
+
+function listen_to_hex_inputs(){
+    const hex_inputs = selectAll("input[type='text']");
+
+    hex_inputs.forEach(input => {
+        const color_id = input.id.replace("-hex", "");
+        const picker = select(`#${color_id}`);
+
+        input.addEventListener("input", () => {
+            if (!input.value.startsWith("#")){
+                input.value = "#" + input.value;
+            }
+            const color = input.value;
+
+            if (!/^#[0-9A-Fa-f]{6}$/.test(color)){
+                return;
+            }
+
+            picker.value = input.value;
+
+            document.documentElement.style.setProperty(
+                `--${picker.id}`,
+                picker.value
+            );
+        });
+    });
 }
 
 function listen_to_pickers(){
     const pickers = selectAll("input[type='color']");
 
     pickers.forEach(function(picker){
+        const hex_input = select(`#${picker.id}-hex`);
+
         picker.addEventListener("input", () =>  {
             document.documentElement.style.setProperty(
                 `--${picker.id}`,
                 picker.value
             );
 
-            console.log("chegou aqui");
-
+            hex_input.value = picker.value;
         });
     });
 }
 
 function clear_pickers(){
-    const pickers = selectAll("input[type='color']");
-
-    pickers.forEach(picker => {
-        const color = default_colors[picker.id];
-        picker.value = color;
-
-        document.documentElement.style.setProperty(
-            `--${picker.id}`,
-            color
-        );
-    });
+    update_pickers(themes.default);
 }
 
 function apply_theme(){

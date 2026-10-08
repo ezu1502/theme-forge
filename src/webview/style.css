@@ -19,15 +19,34 @@
     --comment: #8B949E;
 }
 
+body {
+    font-family: "Segoe UI", sans-serif;
+}
 
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
 body {
     background-color: #191A1B;
     margin: 0;
 }
 
-h1, h2 {
+h1, h2, h3, h4, p {
     color: #BFBFBF;
 }
+
+h1, h2, h3, h4, p, label {
+    font-family: "Segoe UI";
+}
+
 
 main {
     display: flex;
@@ -126,6 +145,31 @@ input[type="color"]::-webkit-color-swatch {
     
     /* colocar um glow na cor escolhida talvez? */
 }
+
+input[type="text"]{
+    background-color: transparent;
+
+    min-width: 80px;
+    border: 1px solid #6b6b6b;
+
+    padding: 10px;
+    
+    box-sizing: border-box;
+    text-align: center;
+
+    color: #EEEEEE;
+
+    box-shadow: 0 0 10px transparent;
+
+    transition: box-shadow 0.2s ease;
+
+    border-radius: 3px;
+}
+
+input[type="text"]:focus{
+    box-shadow: 0 0 10px #EEEEEE66;
+}
+
 
 .color-categories {
     display: grid;
@@ -235,6 +279,7 @@ span.constant {
 
     border-radius: 5px;
 
+    font-family: "Segoe UI";
 
     color: #bebebe;
     border: none;
@@ -293,13 +338,12 @@ span.constant {
     align-items: center;
 
     margin-bottom: 20px;
+
 }
 
 .menus {
     display: flex;
-    align-items: center;
-
-    
+    align-items: center;    
 }
 
 .dropdown {
@@ -319,6 +363,12 @@ span.constant {
 
 .menu {
     position: relative;
+    
+}
+
+.menu-button, .dropdown button {
+    font-family: "Segoe UI" sans-serif;
+
 }
 
 .menu-button, .dropdown.open button {
@@ -361,4 +411,81 @@ span.constant {
     background-color: #361616;
 
     border: 1px solid #3b3b3b;
+}
+
+.hidden {
+    display: none;
+}
+
+#help-page {
+    padding: 0px 30px 30px;
+    margin: 0;
+}
+
+#help-page h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+#help-page h3, #help-page h4 {
+    margin-bottom: 0;
+}
+
+#help-page h3 {
+    font-size: 30px;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+
+    text-underline-offset: 3px;
+}
+
+#help-page h4 {
+    font-size: 25px;
+}
+
+#help-page p, #help-page button {
+    font-size: 18px;
+    letter-spacing: 0.7px;
+
+    margin: 10px 0px;
+}
+
+#github-button, #help-page a {
+    color: #BFBFBF;
+
+    background-color: transparent;
+    border: none;
+
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 2px;
+
+    transition:
+        text-decoration-color 0.2s ease,
+        color 0.2s ease;
+
+    font-family: "Segoe UI";    
+}
+
+#github-button:hover, #help-page a:hover {
+    text-decoration-color: #d11212;
+    color: #d11212;
+}
+
+#help-page a {
+    text-align: center;
+
+    font-size: 18px;
+
+    margin-top: 10px;
+
+    padding-bottom: 20px;
+}
+
+#help-page h4, #help-page p:not(.subtitle) {
+    margin-left: 20px;
+}
+
+.subtitle {
+    color: #999999;
 }

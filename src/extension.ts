@@ -94,7 +94,16 @@ async function applyColors(colors: ThemeColors | null){
 				},
 
 				{
-					"scope": "support.type",
+					"scope": [
+						"support.type",
+						"support.class",
+						"support.struct",
+						"entity.name.type",
+						"entity.name.class",
+						"entity.name.namespace",
+						"entity.other.attribute"
+					],
+
 					"settings": {
 						"foreground": colors["library-type"]
 					}
@@ -248,6 +257,12 @@ async function openForge(context: vscode.ExtensionContext){
 			});
 
 			vscode.window.showInformationMessage("Theme imported successfully!");
+		}
+
+		if (message.type === "open-github"){
+			await vscode.env.openExternal(
+				vscode.Uri.parse("https://github.com/ezu1502/theme-forge")
+			);
 		}
 	});
 

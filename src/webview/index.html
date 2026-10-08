@@ -11,13 +11,12 @@
 
     <body>
         <header>
-            <nav class="forge-nav">
+            <nav class="forge-nav" id="nav-forge">
                 <div class="menus">
                     <div class="menu">
                         <button class="menu-button">File</button>
 
                         <div class="dropdown">
-                            <button>New</button>
                             <button id="import-button">Import</button>
                             <button id="export-button">Export</button>
                         </div>
@@ -26,21 +25,16 @@
                     <div class="menu">
                         <button class="menu-button">Themes</button>
 
-                        <div class="dropdown">
-                            <button>Default</button>
-                            <button>Dark</button>
-                            <button>Light</button>
-                            <button>Habanero</button>
+                        <div class="dropdown" id="themes-dropdown">
+                            <button id="default">Default</button>
+                            <button id="dark">Dark</button>
+                            <button id="light">Light</button>
+                            <button id="habanero">Habanero</button>
                         </div>
                     </div>
 
                     <div class="menu">
-                        <button class="menu-button">Help</button>
-
-                        <div class="dropdown">
-                            <button id="help-button">About</button>
-                            <button>GitHub</button>
-                        </div>
+                        <button class="menu-button" id="help-button">Help</button>
                     </div>
 
                 </div>
@@ -57,61 +51,74 @@
                     <div class="color-item">
                         <label for="background">Background</label>
                         <input type="color" id="background" value="#121314">
+                        <input type="text" id="background-hex" value="#121314" maxlength="7">
                     </div>
 
                     <div class="color-item">
                         <label for="foreground">Foreground</label>
                         <input type="color" id="foreground" value="#EEEEEE">
+                        <input type="text" id="foreground-hex" value="#EEEEEE" maxlength="7">
                     </div>
 
                     <div class="color-item">
                         <label for="plain-code">Plain Code</label>
                         <input type="color" id="plain-code" value="#B5CEA8">
+                        <input type="text" id="plain-code-hex" value="#B5CEA8" maxlength="7">
                     </div>
 
                     <div class="color-item">
                         <label for="keyword">Keyword</label>
-                        <input type="color" id="keyword" value="#ff7b72">
+                        <input type="color" id="keyword" value="#FF7B72">
+                        <input type="text" id="keyword-hex" value="#FF7B72" maxlength="7">
                     </div>
 
                     <div class="color-item">
                         <label for="function">Function</label>
                         <input type="color" id="function" value="#D2A8FF">
+                        <input type="text" id="function-hex" value="#D2A8FF" maxlength="7">
                     </div>
 
                     <div class="color-item">
                         <label for="string">String</label>
                         <input type="color" id="string" value="#A5D6FF">
+                        <input type="text" id="string-hex" value="#A5D6FF" maxlength="7">
                     </div>
 
                     <div class="color-item">
                         <label for="primitive-type">Primitive Type</label>
                         <input type="color" id="primitive-type" value="#FF7B72">
+                        <input type="text" id="primitive-type-hex" value="#FF7B72" maxlength="7">
                     </div>
 
                     <div class="color-item">
                         <label for="library-type">Library Type</label>
                         <input type="color" id="library-type" value="#4EC9B0">
+                        <input type="text" id="library-type-hex" value="#4EC9B0" maxlength="7">
                     </div>
 
                     <div class="color-item">
                         <label for="modifier">Modifier</label>
                         <input type="color" id="modifier" value="#569CD6">
+                        <input type="text" id="modifier-hex" value="#569CD6" maxlength="7">
                     </div>
 
                     <div class="color-item">
                         <label for="constant">Constant</label>
                         <input type="color" id="constant" value="#79C0FF">
+                        
+                        <input type="text" id="constant-hex" value="#79C0FF" maxlength="7">
                     </div>
 
                     <div class="color-item">
                         <label for="parameter">Parameter</label>
                         <input type="color" id="parameter" value="#FFA657">
+                        <input type="text" id="parameter-hex" value="#FFA657" maxlength="7">
                     </div>
 
                     <div class="color-item">
                         <label for="comment">Comment</label>
                         <input type="color" id="comment" value="#8B949E">
+                        <input type="text" id="comment-hex" value="#8B949E" maxlength="7">
                     </div>
                 </div>
             </section>
@@ -170,10 +177,88 @@
             </div>
         </main> 
 
-        <main id="help-page">
-            <h2>Theme Forge - Help</h2>
+        <main id="help-page" class="hidden">
+            <div>
+                <h2>Help</h2>
+                <p class="subtitle">Everything you need to create and manage your VS Code theme.</p>
+            </div>
+            
 
-            <!-- TODO continuar daqui! Terminar o help-page -->
+            <h3>Getting Started</h3>
+            <p>
+                Theme Forge lets you customize the colors of your VS Code editor with a simple visual interface.
+                Choose a color for each category and see your changes instantly in the preview.
+                When you're happy with your theme, click Apply to apply it to VS Code.
+            </p>
+
+            <h3>Editing Your Theme</h3>
+
+            <h4>Color Pickers</h4>
+            <p>
+                Use the color pickers in the Settings section to customize each color category.
+                Changes are reflected immediately in the preview.
+            </p>
+
+            <h4>Preview</h4>
+            <p>
+                The Preview section shows how your selected colors look in a code editor.
+                The preview is only a visual representation and does not affect your VS Code settings by itself.
+            </p>
+
+            <h3>Theme Management</h3>
+
+            <h4>Apply</h4>
+
+            <p>
+                Click Apply to apply your current colors to VS Code.
+                Your selected colors will be saved to your VS Code settings.
+            </p>
+
+            <h4>Clear</h4>
+
+           <p>
+                Click Clear to discard your current edits and restore the default Theme Forge colors.
+                This does not remove a theme that has already been applied to VS Code.
+            </p>
+
+            <h4>Reset Theme</h4>
+
+            <p>Click Reset Theme to reset your VS Code theme settings.</p>
+
+            <h4>Import</h4>
+
+            <p>
+                Use File → Import to load a previously exported Theme Forge theme.
+                Importing a theme only loads its colors into the editor and preview.
+                <strong>You must click Apply to apply the imported theme to VS Code.</strong>
+            </p>
+
+            <h4>Export</h4>
+
+            <p>
+                Want to share your theme with others, or save it for applying again later?
+                Use File → Export to save your theme as a JSON file.
+                Exported themes can be imported later using File → Import.
+            </p>
+
+            <h4>Themes</h4>
+
+            <p>
+                The Themes menu provides predefined color schemes that you can use as a starting point for your own theme.
+            </p>
+
+            <h3>About</h3>
+
+            <p>
+                Theme Forge is a visual theme editor for VS Code developed by Ezu.
+                More details on
+
+                <button id="github-button">Github</button>
+            </p>
+
+
+            <a href="#nav-forge">Go to top</a>
+
         </main>
     </body>
 </html>

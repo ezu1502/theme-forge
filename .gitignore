@@ -6,3 +6,5 @@ node_modules
 
 *.cpp
 *.py
+
+.vscode/settings.json
