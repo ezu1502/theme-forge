@@ -1,4 +1,5 @@
 :root {
+    --window-color: #191a1b;
     --background: #121314;
     --foreground: #B5CEA8;
 
@@ -84,6 +85,8 @@ section {
 
 section.settings {
     height: 50%;
+
+    overflow: hidden;
 }
 
 section.preview, section.options {

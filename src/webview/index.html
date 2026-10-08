@@ -27,8 +27,8 @@
 
                         <div class="dropdown" id="themes-dropdown">
                             <button id="default">Default</button>
-                            <button id="dark">Dark</button>
-                            <button id="light">Light</button>
+                            <button id="minimalist">Minimalist</button>
+                            <button id="future">Future</button>
                             <button id="habanero">Habanero</button>
                         </div>
                     </div>
@@ -48,6 +48,12 @@
                 <h2>Settings</h2>
 
                 <div class="color-categories">
+                    <div class="color-item">
+                        <label for="background">Window Color</label>
+                        <input type="color" id="window-color" value="#121314">
+                        <input type="text" id="window-color-hex" value="#121314" maxlength="7">
+                    </div>
+
                     <div class="color-item">
                         <label for="background">Background</label>
                         <input type="color" id="background" value="#121314">
@@ -105,7 +111,7 @@
                     <div class="color-item">
                         <label for="constant">Constant</label>
                         <input type="color" id="constant" value="#79C0FF">
-                        
+
                         <input type="text" id="constant-hex" value="#79C0FF" maxlength="7">
                     </div>
 
@@ -143,7 +149,7 @@
                         </div>
                         <div class="code-line">
                             <span class="keyword">if</span>
-                            <span class="code">(</span><span class="constant">name</span>
+                            <span class="code">(</span><span class="constant">NAME</span>
                             <span class="code">==</span>
                             
                             <span class="string">"VS Code"</span><span class="code">){</span>

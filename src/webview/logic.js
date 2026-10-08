@@ -3,6 +3,7 @@ console.log("logic.js loaded!");
 
 const themes = {
     default: {
+        "window-color": "#191a1b",
         background: "#121314",
         foreground: "#B5CEA8",
         "plain-code": "#C9D1D9",
@@ -16,18 +17,53 @@ const themes = {
         parameter: "#FFA657",
         comment: "#8B949E"
     },
+
+    minimalist: {
+        "window-color": "#121314",
+        "background": "#181a1b",
+        "foreground": "#EEEEEE",
+        "plain-code": "#cccccc",
+        "keyword": "#9a57ff",
+        "function": "#a8c2ff",
+        "string": "#ad91ee",
+        "primitive-type": "#5374f9",
+        "library-type": "#c64cc8",
+        "modifier": "#9a57ff",
+        "constant": "#80ffb7",
+        "parameter": "#FFA657",
+        "comment": "#8B949E"
+    },
+
+    future: {
+        "window-color": "#121314",
+        "background": "#111716",
+        "foreground": "#60e2c8",
+        "plain-code": "#aadfdb",
+        "keyword": "#3d7eff",
+        "function": "#76cb7c",
+        "string": "#5d6dbb",
+        "primitive-type": "#d86dd9",
+        "library-type": "#ff24cf",
+        "modifier": "#3d7eff",
+        "constant": "#ff7a7a",
+        "parameter": "#fd1767",
+        "comment": "#446f5b"
+    },
     
-    dark: {
-
-    },
-
-    light: {
-
-    },
-
     habanero: {
-
-    }
+        "background": "#111111",
+        "foreground": "#eeeeee",
+        "plain-code": "#cbcda7",
+        "keyword": "#ff7752",
+        "function": "#f099af",
+        "string": "#fdffa3",
+        "primitive-type": "#ef3300",
+        "library-type": "#bdd85a",
+        "modifier": "#ced657",
+        "constant": "#c4d7fd",
+        "parameter": "#ff9e42",
+        "comment": "#8b949e"
+    },
 };
 
 
@@ -94,10 +130,15 @@ function listen_to_messages(){
 }
 
 function update_pickers(colors){
+
+    if (Object.keys(colors).length === 0){
+        return update_pickers(themes.default);
+    }
+
     const pickers = selectAll("input[type='color']");
 
     pickers.forEach(picker => {
-        const color = colors[picker.id];
+        const color = colors[picker.id] ?? themes.default[picker.id];
         const hex_input = select(`#${picker.id}-hex`);
 
         picker.value = color;
@@ -120,7 +161,6 @@ function listen_to_nav(){
 
         button.addEventListener("click", () => {
             dropdown.classList.toggle("open");
-            console.log("click!");
         });
     });
 
@@ -128,8 +168,11 @@ function listen_to_nav(){
         const menu = event.target.closest(".menu");
 
         menus.forEach(m => {
-            if (menu === null || m !== menu){
-                m.querySelector(".dropdown").classList.remove("open");
+
+            const dropdown = m.querySelector(".dropdown");
+
+            if ((menu === null || m !== menu) && (dropdown !== null)){
+                dropdown.classList.remove("open");
             } 
         });
     }); 
@@ -156,7 +199,13 @@ function listen_to_nav(){
     themes_options.forEach(theme => {
         theme.addEventListener("click", () => {
             update_pickers(themes[theme.id]);
+
+            menus.forEach(m => {
+                m.querySelector(".dropdown")?.classList.remove("open");
+            });
         });
+
+        
     });
 
 

@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 
 interface ThemeColors {
+	"window-color": string;
     "background": string;
     "foreground": string;
 
@@ -41,6 +42,12 @@ async function applyColors(colors: ThemeColors | null){
 	await config.update(
 		"workbench.colorCustomizations",
 		{
+
+			"titleBar.activeBackground":colors["window-color"],
+			"activityBar.background": colors["window-color"],
+			"sideBar.background": colors["window-color"],
+			"statusBar.background": colors["window-color"],
+			
 			"editor.background": colors["background"],
 			"editor.foreground": colors["foreground"]
 		},
