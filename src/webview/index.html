@@ -10,9 +10,46 @@
     </head>
 
     <body>
-        <h1 class="title">Theme Forge</h1>
-        <main>
-        
+        <header>
+            <nav class="forge-nav">
+                <div class="menus">
+                    <div class="menu">
+                        <button class="menu-button">File</button>
+
+                        <div class="dropdown">
+                            <button>New</button>
+                            <button id="import-button">Import</button>
+                            <button id="export-button">Export</button>
+                        </div>
+                    </div>
+
+                    <div class="menu">
+                        <button class="menu-button">Themes</button>
+
+                        <div class="dropdown">
+                            <button>Default</button>
+                            <button>Dark</button>
+                            <button>Light</button>
+                            <button>Habanero</button>
+                        </div>
+                    </div>
+
+                    <div class="menu">
+                        <button class="menu-button">Help</button>
+
+                        <div class="dropdown">
+                            <button id="help-button">About</button>
+                            <button>GitHub</button>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <h1 class="title">Theme Forge</h1>
+
+            </nav>
+        </header>
+        <main id="editor-page">
             <section class="settings">
                 <h2>Settings</h2>
 
@@ -48,12 +85,12 @@
                     </div>
 
                     <div class="color-item">
-                        <label for="types">Primitive Type</label>
+                        <label for="primitive-type">Primitive Type</label>
                         <input type="color" id="primitive-type" value="#FF7B72">
                     </div>
 
                     <div class="color-item">
-                        <label for="types">Library Type</label>
+                        <label for="library-type">Library Type</label>
                         <input type="color" id="library-type" value="#4EC9B0">
                     </div>
 
@@ -65,6 +102,11 @@
                     <div class="color-item">
                         <label for="constant">Constant</label>
                         <input type="color" id="constant" value="#79C0FF">
+                    </div>
+
+                    <div class="color-item">
+                        <label for="parameter">Parameter</label>
+                        <input type="color" id="parameter" value="#FFA657">
                     </div>
 
                     <div class="color-item">
@@ -119,12 +161,19 @@
                     <h2>Options</h2>
                     <div id="options-content">
                         <button class="forge-button" id="apply-button">Apply</button>
-                        <button class="forge-button" id="clear-button">Clear</button>
+                        <button class="forge-button" id="clear-edit-button">Clear</button>
+                        <button class="forge-button" id="clear-changes-button">Reset Theme</button>
                     </div>
 
                     
                 </section>
             </div>
         </main> 
+
+        <main id="help-page">
+            <h2>Theme Forge - Help</h2>
+
+            <!-- TODO continuar daqui! Terminar o help-page -->
+        </main>
     </body>
 </html>

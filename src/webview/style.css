@@ -15,12 +15,14 @@
     --modifier: #569CD6;
     --constant: #79C0FF;
 
+    --parameter: #FFA657;
     --comment: #8B949E;
 }
 
 
 body {
     background-color: #191A1B;
+    margin: 0;
 }
 
 h1, h2 {
@@ -35,7 +37,7 @@ main {
     box-sizing: border-box;
 
     width: 100%;
-    height: calc(100vh - 90px);
+    height: calc(100vh - 120px);
 
     gap: 20px;
 
@@ -57,6 +59,7 @@ section {
     border-radius: 10px;
     padding: 0px 20px;
 
+    padding-bottom: 20px;
     background-color: #121314;
 }
 
@@ -77,9 +80,21 @@ label {
 
 .title {
     text-align: center;
-    
-    margin-top: 15px;
-    margin-bottom: 5px;
+    margin: 10px;
+
+    text-shadow:
+        0 0 10px #c0a42700,
+        0 0 20px #ff480000;
+
+    transition: text-shadow 0.4s ease;
+
+    cursor: default;
+}
+
+.title:hover {
+    text-shadow:
+        0 0 10px #c0a427,
+        0 0 20px #ff4800;
 }
 
 input[type="color"]{
@@ -97,6 +112,10 @@ input[type="color"]{
     flex-shrink: 0;
 }
 
+input[type="color"]:hover{
+    cursor: pointer;
+}
+
 input[type="color"]::-webkit-color-swatch-wrapper {
     padding: 0;
 }
@@ -104,6 +123,8 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
     border: 1px solid #6b6b6b;
     border-radius: 15px;
+    
+    /* colocar um glow na cor escolhida talvez? */
 }
 
 .color-categories {
@@ -112,7 +133,7 @@ input[type="color"]::-webkit-color-swatch {
     grid-template-rows: repeat(3, 1fr);
     grid-auto-flow: column;
 
-    gap: 30px;
+    gap: 20px 30px;
 }
 
 .color-categories .category{
@@ -221,7 +242,7 @@ span.constant {
     background: linear-gradient(135deg, #361616, #ad0808, #ca4e1d);
 
     box-shadow:
-        0 0 10px #ff480080;
+        0 0 10px #ff480080,
         0 0 10px #FFFF0000,
         0 0 20px #ff480000;
     
@@ -239,6 +260,9 @@ span.constant {
     transition:
         transform 0.2s ease,
         box-shadow 0.5s ease 0.1s;
+
+    cursor: pointer;
+
 }
 
 .forge-button:active {
@@ -255,4 +279,86 @@ span.constant {
     transition:
         transform 0.08s ease,
         box-shadow 0.2s ease;
+}
+
+
+.forge-nav {
+    display: flex;
+
+    background-color: #361616;
+
+    padding: 5px 20px;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.menus {
+    display: flex;
+    align-items: center;
+
+    
+}
+
+.dropdown {
+    display: none;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    width: 180px;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+}
+
+.menu {
+    position: relative;
+}
+
+.menu-button, .dropdown.open button {
+    border: none;
+    background-color: transparent;
+    padding: 15px 20px;
+    color: #EEEEEE;
+    font-size: 15px;
+    transition: background-color 0.2s ease;
+}
+
+.menu-button {
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.dropdown.open button {
+    width: 100%;
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+.menu-button:hover, .dropdown.open button:hover {
+    background-color: #860606;
+}
+
+.dropdown.open {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    background-color: #361616;
+
+    border: 1px solid #3b3b3b;
 }

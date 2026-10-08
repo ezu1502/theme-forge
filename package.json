@@ -17,6 +17,12 @@
         "command": "theme-forge.open",
         "title": "Theme Forge: Open"
       }
+    ],
+    "keybindings": [
+      {
+        "command": "theme-forge.open",
+        "key": "ctrl+alt+t"
+      }
     ]
   },
   "scripts": {

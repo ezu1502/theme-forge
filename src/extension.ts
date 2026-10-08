@@ -3,14 +3,20 @@ import * as vscode from 'vscode';
 interface ThemeColors {
     "background": string;
     "foreground": string;
+
     "plain-code": string;
+
     "keyword": string;
     "function": string;
     "string": string;
+
     "primitive-type": string;
     "library-type": string;
+
     "modifier": string;
     "constant": string;
+
+	"parameter": string,
     "comment": string;
 }
 
@@ -50,7 +56,64 @@ async function applyColors(colors: ThemeColors | null){
 					"settings": {
 						"foreground": colors["keyword"]
 					}
-				}
+				},
+
+				{
+					"scope": "comment",
+					"settings": {
+						"foreground": colors["comment"]
+					}
+				},
+
+				{
+					"scope": "entity.name.function",
+					"settings": {
+						"foreground": colors["function"]
+					}
+				},
+
+				{
+					"scope": "constant",
+					"settings": {
+						"foreground": colors["constant"]
+					}
+				},
+
+				{
+					"scope": "storage.modifier",
+					"settings": {
+						"foreground": colors["modifier"]
+					}
+				},
+
+				{
+					"scope": "storage.type",
+					"settings": {
+						"foreground": colors["primitive-type"]
+					}
+				},
+
+				{
+					"scope": "support.type",
+					"settings": {
+						"foreground": colors["library-type"]
+					}
+				},
+
+				{
+					"scope": "string",
+					"settings": {
+						"foreground": colors["string"]
+					}
+				},
+
+				{
+					"scope": "variable.parameter",
+					"settings": {
+						"foreground": colors["parameter"]
+					}
+				},
+				
 
 			]
 		},
@@ -105,12 +168,89 @@ async function openForge(context: vscode.ExtensionContext){
 			const colors = message.colors as ThemeColors;
 
 			await applyColors(colors);
+
+			vscode.window.showInformationMessage("Theme applied successfully!");
 		}
 
 		if (message.type === "clear-theme"){
-			await applyColors(null);
+			let popup = message.commit ? "Theme cleared successfully!" : "Editor changes cleared!";
+
+			if (message.commit){
+				await applyColors(null);
+			}
+
+			panel.webview.postMessage({
+				type: "clear-theme"
+			});
+
+			vscode.window.showInformationMessage(popup);
+		}
+
+		if (message.type === "export-theme"){
+			const theme = message.theme;
+
+			const pathUri = await vscode.window.showSaveDialog({
+				defaultUri: vscode.Uri.file("forged-theme.json"),
+				filters: {
+					"JSON - Javascript Object Notation": ["json"]
+				}
+			});
+
+
+			if (pathUri === undefined){
+				return;
+			}
+
+
+
+			try {
+				await vscode.workspace.fs.writeFile(
+					pathUri,
+					Buffer.from(theme, "utf8")
+				);
+
+				vscode.window.showInformationMessage("Theme exported successfully");
+			}
+			catch (error){
+				vscode.window.showErrorMessage("Failed to export theme.");
+			}
+		}
+
+		if (message.type === "import-theme"){
+			const pathUris = await vscode.window.showOpenDialog({
+				filters: {
+					"JSON - Javascript Object Notation": ["json"]
+				}
+			});
+
+			if (pathUris === undefined){
+				return;
+			}
+
+			const pathUri = pathUris[0];
+
+			const data = await vscode.workspace.fs.readFile(pathUri);
+			const themeString = Buffer.from(data).toString("utf8");
+			
+			let colors;
+
+			try {
+				colors = JSON.parse(themeString);
+			}
+			catch (error){
+				vscode.window.showErrorMessage("Couldn't import theme!");
+				return;
+			}
+
+			panel.webview.postMessage({
+				type: "update-pickers",
+				colors: colors
+			});
+
+			vscode.window.showInformationMessage("Theme imported successfully!");
 		}
 	});
+
 
 
 }
